@@ -1,0 +1,73 @@
+
+# criação do repositório master
+mkdir repo
+cd repo
+git init --bare
+
+# clode do repositório master
+mkdir dev1 dev2
+git remote -v
+cd dev1
+git clone D:\Pyton\CursoGit\repo
+cd dev2
+git clone D:\Pyton\CursoGit\repo
+
+
+# manutenção dos arquivos
+git add .
+git clean -f #remove os arquivos que nao estao trakeados
+git status
+git commit -m 'Alterações nos arquivos estáticos'
+git checkout -- file.txt # apaga as modificações de um arquivo trakeado
+
+
+# linha do tempo dos arquivos
+git reset HEAD~1 --soft # mantem as alterações e volta x comits
+git reset HEAD~1 --hard # apaga as alterações e volta x comits
+ 
+
+#commits 
+git pull origin master
+git commit -a -m "Alteração com inclusao de arquivos novos" # faz o commit já com a inclusão dos arquivos rastreados. cuidado pois nao commita os arquivos que nao estão rastreados, vc tem que fazer o git add anter para eles
+git commit -a -m "Alteração com inclusao de arquivos novos 2" --amend # comita no mesmos commit anterior. nao usar depois de fazer o git pull
+
+
+# manutenção das branch
+git branch
+git branch envia-email
+git checkout envia-email
+
+git push origin envia-email # envia as alterações da branch envia-email para a origem
+git pull origin envia-email # puxa as alterações da origem para a branch envia-email
+
+git checkout master # altera para a branch master
+git merge envia-email # junta a branch envia-email a master
+git branch -d envia-email #deleta a branch
+
+# merge e conflitos
+git merge <<nome da branch>>
+
+# github
+cd dev1
+git clone https://github.com/rafaelrbnet/cursogit.git
+cd cursogit
+git remote -v
+origin  https://github.com/rafaelrbnet/cursogit.git (fetch)
+origin  https://github.com/rafaelrbnet/cursogit.git (push)
+
+git push origin master # envia para o github 
+
+# trabalhando com multiplas origens
+D:\Pyton\CursoGit\dev1
+ cd repo\
+
+D:\Pyton\CursoGit\dev1\repo (master -> origin)
+ git remote add github https://github.com/rafaelrbnet/repo.git
+
+D:\Pyton\CursoGit\dev1\repo (master -> origin)
+ git remote -v
+github  https://github.com/rafaelrbnet/repo.git (fetch)
+github  https://github.com/rafaelrbnet/repo.git (push)
+origin  D:\Pyton\CursoGit\repo (fetch)
+origin  D:\Pyton\CursoGit\repo (push)
+
